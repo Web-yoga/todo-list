@@ -1,0 +1,74 @@
+@import '../../variables_css.scss';
+@import '../../functions_css.scss';
+
+.todo-list-item{
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	padding-bottom: 15px;
+
+	&__title,
+	&__input{
+		display: flex;
+		flex: 1 0 300px;
+		align-items: center;
+		background-color: $bg_color;
+		color: $color;
+		border: 1px solid transparent;
+		border-radius: .25rem;
+		font-size: em(14);
+		height: 3rem;
+		padding: 0 15px;
+		margin-right:30px;
+	}
+
+	&__title{
+		cursor: pointer;
+	}
+
+	&.important &__title{
+		background-color: $bg_light;
+	}
+
+	&__title.finish,
+	&.important &__title.finish{
+		text-decoration: line-through;
+		background-color: $disable;
+	}
+
+	.todo-list-item__btn-write{
+		margin-right: 5px;
+		background: no-repeat center/50% url(../../assets/feather-pointed-solid.svg);
+		background-color: $accent_dark;
+		&:hover{
+			background-color: $accent;
+		}
+	}
+
+	.todo-list-item__btn-important{
+		margin-right: 5px;
+		background: no-repeat center/50% url(../../assets/star-regular.svg);
+		background-color: $accent_dark;
+		&:hover{
+			background-color: $accent;
+		}
+	}
+
+	&.important .todo-list-item__btn-important{
+		background: no-repeat center/50% url(../../assets/star-solid.svg);
+		background-color: $accent_dark;
+		&:hover{
+			background-color: $accent;
+		}
+	}
+
+	.todo-list-item__btn-delete{
+		background: no-repeat center/50% url(../../assets/trash-can-solid.svg);
+		background-color: $accent_dark;
+		&:hover{
+			background-color: $accent;
+		}
+	}
+
+}

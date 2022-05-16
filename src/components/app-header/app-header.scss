@@ -1,0 +1,22 @@
+@import '../../variables_css.scss';
+
+.app-header{
+	display: flex;
+	flex-direction: row;
+	justify-content:flex-end;
+	align-items: center;
+	padding-left: 15px;
+	padding-right: 15px;
+
+	box-shadow: 5px 5px 10px $bg_shadow;
+	background-color: $bg_color;
+	color: $color;
+
+	h1{
+		flex: 1 0 300px;
+	}
+
+	div{
+		margin-left: 15px;
+	}
+}

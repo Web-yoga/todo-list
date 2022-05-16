@@ -1,0 +1,20 @@
+/**
+ * Склонение числительных
+ * Use:
+ * num_word(value, ['товар', 'товара', 'товаров']);
+ * num_word(value, ['штука', 'штуки', 'штук']);
+ * 
+ * @param {number} value 
+ * @param {array} words 
+ * @returns 
+ */
+const DeclensionOfNumerals = (value, words) => {  
+	value = Math.abs(value) % 100; 
+	const num = value % 10;
+	if(value > 10 && value < 20) return words[2]; 
+	if(num > 1 && num < 5) return words[1];
+	if(num === 1) return words[0]; 
+	return words[2];
+}
+
+export default DeclensionOfNumerals;
