@@ -16,7 +16,14 @@ class App extends Component {
 				{id: "1", title:"Первое дело", important:false, finish: true},
 				{id: "2", title:"Второе дело", important:true, finish: false},
 				{id: "3", title:"Третье дело", important:false, finish: false},
-			]
+			],
+			filterButtons: [
+				{id: "all", title: "Все"},
+				{id: "active", title: "Активные"},
+				{id: "finished", title: "Завершенные"}
+			],
+			search: "",
+			filter: "all"
 		}
 	}
 
@@ -49,11 +56,43 @@ class App extends Component {
 		}));
 	}
 
+	searchData(data, search){
+		const searchText = search.toLowerCase();
+		if(search.length === 0) return data;
+		return data.filter(item => {
+			return	item.title.toLowerCase().indexOf(searchText) > -1
+		})
+	}
+
+	filterData(data){
+		const filter = this.state.filter;
+		switch(filter){
+			case 'all':
+				return data;
+			case 'active':
+				return data.filter(item => (!item.finish));
+			case 'finished':
+				return data.filter(item => (item.finish));
+			default: return data;
+		}
+
+	}
+
+	onUpdateSearch = (search) => {
+		this.setState({search});
+	}
+
+	onChangeFilter = (filter) => {
+		this.setState({filter});
+	}
+
 	render(){
-		const {data} = this.state;
+		const {data, search, filterButtons, filter} = this.state;
 		const leftListItemsCount = data.filter(item => (!item.finish)).length;
 		const finishListItemsCount = data.filter(item => (item.finish)).length;
 		const importantListItemsCount = data.filter(item => (!item.finish && item.important)).length;
+
+		const filteredData = this.filterData(this.searchData(data, search));
 
 
 		return (
@@ -66,11 +105,16 @@ class App extends Component {
 					/>
 				</div>
 				<div className="conteiner">
-					<SearchPanel />
+					<SearchPanel 
+						onUpdateSearch={this.onUpdateSearch}
+						filterButtons={filterButtons}
+						filter={filter}
+						onChangeFilter = {this.onChangeFilter}
+					/>
 				</div>
 				<div className="conteiner">
 					<TodoList 
-						data={data} 
+						data={filteredData} 
 						onDelete={this.deleteItem} 
 						onToggleProperty={this.onToggleProperty}
 					/>

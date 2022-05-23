@@ -76,4 +76,9 @@
 			transform: scaleX(0);
 			transform-origin: left;
 		}
+
+		.error-message{
+			font-size: em(10);
+			color: red;
+		}
 }

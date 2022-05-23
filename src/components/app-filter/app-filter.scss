@@ -21,25 +21,15 @@
 	text-decoration: none;
 	transition: all 250ms;
 	user-select: none;
-	-webkit-user-select: none;
 	touch-action: manipulation;
 	vertical-align: baseline;
 	width: auto;
 
 	&:hover,
-	&:focus {
+	&:focus,
+	&.active {
 	  background-color: $accent;
 	  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-	}
-
-	&:hover {
-	  transform: translateY(-1px);
-	}
-
-	&:active {
-	  background-color: $accent;
-	  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
-	  transform: translateY(0);
 	}
 
 }
